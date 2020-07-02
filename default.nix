@@ -4,9 +4,13 @@ pkgs.stdenv.mkDerivation {
   name = "maxwilson-dev";
   version = "0.0.1";
 
-  src = builtins.path { path = ./.; name = "maxwilson-dev"; };
+  src = builtins.path { 
+    path = ./.;
+    name = "maxwilson-dev";
+  };
 
   installPhase = ''
-    cp -r $src $out
+    mkdir $out
+    cp -r $src/favicons $src/index.html $out
   '';
 }
