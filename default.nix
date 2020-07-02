@@ -4,7 +4,7 @@ pkgs.stdenv.mkDerivation {
   name = "maxwilson-dev";
   version = "0.0.1";
 
-  src = path { path = ./.; name = "maxwilson-dev"; };
+  src = builtins.path { path = ./.; name = "maxwilson-dev"; };
 
   installPhase = ''
     cp -r $src $out
