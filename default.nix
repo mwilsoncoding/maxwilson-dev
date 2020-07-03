@@ -2,7 +2,7 @@
 
 pkgs.stdenv.mkDerivation {
   name = "maxwilson-dev";
-  version = "0.0.1";
+  version = "0.1.0";
 
   src = builtins.path { 
     path = ./.;
