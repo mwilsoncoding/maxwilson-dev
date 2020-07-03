@@ -42,6 +42,7 @@
             <a id="pijul_link" class="icon" href="https://nest.pijul.com/mwilsoncoding" rel="noopener noreferrer" target="_blank"><img src="./favicons/pijul_dark.png" height="32" style="width: 32px !important"></a>
             <a id="linkedin_link" class="icon" href="https://linkedin.com/in/miwilson2" rel="noopener noreferrer" target="_blank"><img src="./favicons/linkedin_dark.png" height="32" style="width: 32px !important"></a>
             <a id="instagram_link" class="icon" href="https://instagram.com/rush.jet" rel="noopener noreferrer" target="_blank"><img src="./favicons/paw_dark.png" height="32" style="width: 32px !important"></a>
+            <a id="twitter_link" class="icon" href="https://twitter.com/maxwdev" rel="noopener noreferrer" target="_blank"><img src="./favicons/twitter_dark.png" height="32" style="width: 32px !important"></a>
           </div>
         </header>
         <div>
@@ -54,8 +55,7 @@
     <script>
       const icons = document.getElementsByClassName("icon");
       for (icon of icons) {
-        const target = Math.floor(Math.random() * icons.length - 1) + 1;
-        icon.before(icons[target]);
+        icon.before(icons[Math.floor(Math.random() * icons.length)]);
       }
     </script>
   </body>
