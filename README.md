@@ -12,4 +12,4 @@ Links to:
 - [x] github
 - [x] pijul
 - [ ] cv
-- [ ] twitter
+- [x] twitter
