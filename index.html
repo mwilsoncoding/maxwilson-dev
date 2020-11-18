@@ -53,10 +53,7 @@
       </div>
     </div>
     <script>
-      const icons = document.getElementsByClassName("icon");
-      for (icon of icons) {
-        icon.before(icons[Math.floor(Math.random() * icons.length)]);
-      }
+      Array.from(document.getElementsByClassName("icon")).forEach( (icon, _index, icons) => icon.before(icons[Math.floor(Math.random() * icons.length)]) );
     </script>
   </body>
 </html>
