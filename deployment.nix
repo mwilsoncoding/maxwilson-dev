@@ -17,7 +17,6 @@ in
       
   clusterNode0 = { resources, ... }: {
     # Configure main ingress at this level since you have access to what containers exist
-    inherit region;
 #          containers.siteIngress.config = { config, pkgs, lib, resources, ... }:
 #          {
 ##            security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
