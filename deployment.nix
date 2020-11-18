@@ -58,6 +58,7 @@ in
     containers.site-0.autoStart = true;
     containers.site-0.privateNetwork = true;
     containers.site-0.localAddress = "10.120.0.3";
+    containers.site-0.hostAddress = "10.120.0.2";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
