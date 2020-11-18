@@ -46,7 +46,6 @@ in
     containers.site-container-0.config = { pkgs, lib, resources, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
-      networking.hostAddress = "10.120.0.2";
       services.nginx.enable = true;
       services.nginx.recommendedGzipSettings = true;
       services.nginx.recommendedOptimisation = true;
@@ -57,6 +56,7 @@ in
       };
     };
     containers.site-container-0.autoStart = true;
+    containers.site-container-0.hostAddress = "10.120.0.2";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
