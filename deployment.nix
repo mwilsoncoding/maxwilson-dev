@@ -65,4 +65,4 @@ in
       rootDiskSize = 4;
     };
   };
-};
+}
