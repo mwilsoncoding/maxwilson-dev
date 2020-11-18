@@ -13,13 +13,13 @@ in
 
   resources.gceImages.nixos.sourceUri = (import <nixpkgs/nixos/modules/virtualisation/gce-images.nix>).latest;
 
-  resources.gceStaticIPs.siteIngressStatcIP = {
+  resources.gceStaticIPs.site-ingress-statc-ip = {
       region = "us-central1-c";
   };
       
-  clusterNode0 = { resources, ... }: {
+  cluster-node-0 = { resources, ... }: {
     # Configure main ingress at this level since you have access to what containers exist
-#          containers.siteIngress.config = { config, pkgs, lib, resources, ... }:
+#          containers.site-ingress.config = { config, pkgs, lib, resources, ... }:
 #          {
 ##            security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
 #            networking.firewall.allowedTCPPorts = [ 80 443 ];
@@ -33,17 +33,17 @@ in
 ##              enableACME = true;
 #              serverAliases = [ "www.${domain}" ];
 #              locations."/" = {
-#                proxyPass = "http://siteUpstream";
+#                proxyPass = "http://site-upstream";
 #              };
 #            };
-#            services.nginx.upstreams.siteUpstream.servers = {
-#              siteContainer0 = {};
+#            services.nginx.upstreams.site-upstream.servers = {
+#              site-container-0 = {};
 #            };
 #          };
-#          containers.siteIngress.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
-#          containers.siteIngress.hostAddress = resources.gceStaticIPs.siteIngressStaticIP.publicIPv4;
-#          containers.siteIngress.autoStart = true;
-    containers.siteContainer0.config = { pkgs, lib, resources, ... }:
+#          containers.site-ingress.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
+#          containers.site-ingress.hostAddress = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
+#          containers.site-ingress.autoStart = true;
+    containers.site-container-0.config = { pkgs, lib, resources, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
       services.nginx.enable = true;
@@ -51,11 +51,11 @@ in
       services.nginx.recommendedOptimisation = true;
       services.nginx.recommendedProxySettings = true;
       services.nginx.recommendedTlsSettings = true;
-      services.nginx.virtualHosts.siteContainer0 = {
+      services.nginx.virtualHosts.site-container-0 = {
           root = "${import ./. {}}";
       };
     };
-    containers.siteContainer0.autoStart = true;
+    containers.site-container-0.autoStart = true;
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
