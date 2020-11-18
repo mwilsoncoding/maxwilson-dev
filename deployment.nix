@@ -3,7 +3,6 @@
 
 let
   domain = "maxwilson.dev";
-  region = "us-central1-c";
 in
 
 {
@@ -59,7 +58,7 @@ in
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
-      inherit region;
+      region = "us-central1-c";
       bootstrapImage = resources.gceImages.nixos;
       rootDiskSize = 4;
     };
