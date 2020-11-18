@@ -59,7 +59,7 @@ in
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
-      region = "us-central1";
+      region = "us-central1-c";
       bootstrapImage = resources.gceImages.nixos;
       rootDiskSize = 4;
     };
