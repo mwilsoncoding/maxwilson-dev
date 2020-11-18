@@ -22,7 +22,6 @@ in
 #          containers.site-ingress.config = { config, pkgs, lib, resources, ... }:
 #          {
 ##            security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
-             networking.hostName = "site-ingress";
 #            networking.firewall.allowedTCPPorts = [ 80 443 ];
 #            services.nginx.enable = true;
 #            services.nginx.recommendedGzipSettings = true;
@@ -46,8 +45,8 @@ in
 #          containers.site-ingress.autoStart = true;
     containers.site-container-0.config = { pkgs, lib, resources, ... }:
     {
-      networking.hostName = "site-container-0";
       networking.firewall.allowedTCPPorts = [ 80 ];
+      networking.hostAddress = "10.120.0.2";
       services.nginx.enable = true;
       services.nginx.recommendedGzipSettings = true;
       services.nginx.recommendedOptimisation = true;
