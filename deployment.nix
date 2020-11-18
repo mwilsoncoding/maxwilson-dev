@@ -57,6 +57,7 @@ in
     };
     containers.site-container-0.autoStart = true;
     containers.site-container-0.hostAddress = "10.120.0.2";
+    containers.site-container-0.localAddress = "10.120.0.3";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
