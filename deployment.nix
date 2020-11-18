@@ -37,13 +37,13 @@ in
 #              };
 #            };
 #            services.nginx.upstreams.site-upstream.servers = {
-#              site-container-0 = {};
+#              site-0 = {};
 #            };
 #          };
 #          containers.site-ingress.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
 #          containers.site-ingress.hostAddress = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
 #          containers.site-ingress.autoStart = true;
-    containers.site-container-0.config = { pkgs, lib, resources, ... }:
+    containers.site-0.config = { pkgs, lib, resources, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
       services.nginx.enable = true;
@@ -55,10 +55,10 @@ in
           root = "${import ./. {}}";
       };
     };
-    containers.site-container-0.autoStart = true;
-    containers.site-container-0.privateNetwork = true;
-    containers.site-container-0.hostAddress = "10.120.0.2";
-    containers.site-container-0.localAddress = "10.120.0.3";
+    containers.site-0.autoStart = true;
+    containers.site-0.privateNetwork = true;
+    containers.site-0.hostAddress = "10.120.0.2";
+    containers.site-0.localAddress = "10.120.0.3";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     networking.privateIPv4 = "10.120.0.4";
     deployment.targetEnv = "gce";
