@@ -13,7 +13,9 @@ in
 
   resources.gceImages.nixos.sourceUri = (import <nixpkgs/nixos/modules/virtualisation/gce-images.nix>).latest;
 
-  resources.gceStaticIPs.siteIngressStatcIP = {};
+  resources.gceStaticIPs.siteIngressStatcIP = {
+      region = "us-central1-c";
+  };
       
   clusterNode0 = { resources, ... }: {
     # Configure main ingress at this level since you have access to what containers exist
