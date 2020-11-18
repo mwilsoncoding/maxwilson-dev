@@ -14,7 +14,7 @@ in
   resources.gceImages.nixos.sourceUri = (import <nixpkgs/nixos/modules/virtualisation/gce-images.nix>).latest;
 
   resources.gceStaticIPs.site-ingress-statc-ip = {
-      region = "us-central1-c";
+      region = "us-central1";
   };
       
   cluster-node-0 = { resources, ... }: {
@@ -59,7 +59,7 @@ in
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
-      region = "us-central1-c";
+      region = "us-central1";
       bootstrapImage = resources.gceImages.nixos;
       rootDiskSize = 4;
     };
