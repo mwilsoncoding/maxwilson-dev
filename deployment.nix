@@ -7,8 +7,6 @@ let
 in
 
 {
-  inherit nixpkgs;
-
   network = {
     description = "maxwilson<dot>dev";
     enableRollback = true;
@@ -44,7 +42,7 @@ in
 #          containers.siteIngress.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
 #          containers.siteIngress.hostAddress = resources.gceStaticIPs.siteIngressStaticIP.publicIPv4;
 #          containers.siteIngress.autoStart = true;
-    containers.siteContainer0.config = { config, pkgs, lib, resources, ... }:
+    containers.siteContainer0.config = { pkgs, lib, resources, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
       services.nginx.enable = true;
