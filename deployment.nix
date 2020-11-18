@@ -60,7 +60,6 @@ in
     containers.site-0.hostAddress = "10.120.0.2";
     containers.site-0.localAddress = "10.120.0.3";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
-    networking.privateIPv4 = "10.120.0.4";
     deployment.targetEnv = "gce";
     deployment.gce = {
       region = "us-central1-c";
