@@ -60,7 +60,7 @@ in
       };
     };
     containers.site-0.autoStart = true;
-    containers.site-0.hostBridgh = "br0";
+    containers.site-0.hostBridge = "br0";
     containers.site-0.localAddress = "10.0.1.2";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     networking.bridges.br0.interfaces = [];
