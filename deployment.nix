@@ -17,32 +17,37 @@ in
       region = "us-central1";
   };
       
-  cluster-node-0 = { resources, ... }: {
+  cluster-node-0 = { config, resources, ... }: {
     # Configure main ingress at this level since you have access to what containers exist
-#          containers.site-ingress.config = { config, pkgs, lib, resources, ... }:
-#          {
-##            security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
-#            networking.firewall.allowedTCPPorts = [ 80 443 ];
-#            services.nginx.enable = true;
-#            services.nginx.recommendedGzipSettings = true;
-#            services.nginx.recommendedOptimisation = true;
-#            services.nginx.recommendedProxySettings = true;
-##            services.nginx.recommendedTlsSettings = true;
-#            services.nginx.virtualHosts."${domain}" = {
-##              forceSSL = true;
-##              enableACME = true;
-#              serverAliases = [ "www.${domain}" ];
-#              locations."/" = {
-#                proxyPass = "http://site-upstream";
-#              };
-#            };
-#            services.nginx.upstreams.site-upstream.servers = {
-#              site-0 = {};
-#            };
-#          };
-#          containers.site-ingress.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
-#          containers.site-ingress.hostAddress = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
-#          containers.site-ingress.autoStart = true;
+          containers.site-ingress.config =
+            let
+              cluster-config = config;
+            in
+            { config, pkgs, lib, resources, ... }:
+            {
+#              security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
+              networking.firewall.allowedTCPPorts = [ 80 443 ];
+              services.nginx.enable = true;
+              services.nginx.recommendedGzipSettings = true;
+              services.nginx.recommendedOptimisation = true;
+              services.nginx.recommendedProxySettings = true;
+#              services.nginx.recommendedTlsSettings = true;
+              services.nginx.virtualHosts."${domain}" = {
+#                forceSSL = true;
+#                enableACME = true;
+                serverAliases = [ "www.${domain}" ];
+                locations."/" = {
+                  proxyPass = "http://site-upstream";
+                };
+              };
+              services.nginx.upstreams.site-upstream.servers = {
+                "${cluster-config.containers.site-0.localAddress}" = {};
+              };
+            };
+    containers.site-i.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
+    containers.site-i.localAddress = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
+    containers.site-i.hostAddress = "10.120.0.4";
+    containers.site-i.autoStart = true;
     containers.site-0.config = { pkgs, lib, resources, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
