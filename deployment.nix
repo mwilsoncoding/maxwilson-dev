@@ -20,9 +20,6 @@ in
   cluster-node-0 = { config, resources, ... }: {
     # Configure main ingress at this level since you have access to what containers exist
     containers.site-i.config =
-      let
-        cluster-config = config;
-      in
       { config, pkgs, lib, resources, ... }:
       {
 #        security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
@@ -41,12 +38,12 @@ in
           };
         };
         services.nginx.upstreams.site-upstream.servers = {
-          "${cluster-config.containers.site-0.localAddress}" = {};
+          site-0 = {};
         };
       };
     containers.site-i.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
     containers.site-i.privateNetwork = true;
-    containers.site-i.localAddress = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
+    containers.site-i.localAddress = "10.120.0.5"; # resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
     containers.site-i.hostAddress = "10.120.0.4";
     containers.site-i.autoStart = true;
     containers.site-0.config = { pkgs, lib, resources, ... }:
