@@ -13,7 +13,7 @@ in
 
   resources.gceImages.nixos.sourceUri = (import <nixpkgs/nixos/modules/virtualisation/gce-images.nix>).latest;
 
-  resources.gceStaticIPs.site-ingress-statc-ip = {
+  resources.gceStaticIPs.site-ingress-static-ip = {
       region = "us-central1";
   };
       
