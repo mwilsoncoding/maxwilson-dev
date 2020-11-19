@@ -20,7 +20,10 @@ in
   cluster-node-0 = { config, resources, lib, ... }: {
     # Configure main ingress at this level since you have access to what containers exist
     containers.site-i.config =
-      { config, pkgs, lib, resources, ... }:
+      let
+        inherit resources;
+      in
+      { config, pkgs, lib, ... }:
       {
 #        security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
         networking.firewall.allowedTCPPorts = [ 80 443 ];
