@@ -24,7 +24,7 @@ in
       {
 #        security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
         networking.firewall.allowedTCPPorts = [ 80 443 ];
-        networking.interfaces.mv-eth1.ipv4addresses = [{address = "10.0.1.1"; prefixLength = 24;} {address = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4; prefixLength = 24;}];
+        networking.interfaces.mv-eth1.ipv4.addresses = [{address = "10.0.1.1"; prefixLength = 24;} {address = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4; prefixLength = 24;}];
         services.nginx.enable = true;
         services.nginx.recommendedGzipSettings = true;
         services.nginx.recommendedOptimisation = true;
@@ -48,7 +48,7 @@ in
     containers.site-0.config = { pkgs, lib, resources, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
-      networking.interfaces.mv-eth1.ipv4addresses = [{address = "10.0.1.2"; prefixLength = 24;}];
+      networking.interfaces.mv-eth1.ipv4.addresses = [{address = "10.0.1.2"; prefixLength = 24;}];
       services.nginx.enable = true;
       services.nginx.recommendedGzipSettings = true;
       services.nginx.recommendedOptimisation = true;
@@ -62,9 +62,7 @@ in
     containers.site-0.privateNetwork = true;
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
-    networking.interfaces.mv-eth1-host = {
-      ipv4.addresses = [{address = "10.0.1.0"; prefixLength = 24;}];
-    };
+    networking.interfaces.mv-eth1-host.ipv4.addresses = [{address = "10.0.1.0"; prefixLength = 24;}];
     networking.macvlans.mv-eth1-host = {
       interface = "eth1";
       mode = "bridge";
