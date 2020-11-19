@@ -65,8 +65,8 @@ in
     containers.site-0.macvlans = ["eth1"];
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
-    networking.interfaces.mv-eth1-host.ipv4.addresses = [{address = "10.0.1.0"; prefixLength = 24;}];
-    networking.macvlans.mv-eth1-host = {
+    networking.interfaces.mv-eth1.ipv4.addresses = [{address = "10.0.1.0"; prefixLength = 24;}];
+    networking.macvlans.mv-eth1 = {
       interface = "eth1";
       mode = "bridge";
     };
