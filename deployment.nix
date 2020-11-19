@@ -44,7 +44,7 @@ in
     containers.site-i.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
     containers.site-i.privateNetwork = true;
     containers.site-i.localAddress = "10.120.0.5"; # resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
-    containers.site-i.hostAddress = "10.120.0.4";
+    containers.site-i.hostBridge = "br0";
     containers.site-i.autoStart = true;
     containers.site-0.config = { pkgs, lib, resources, ... }:
     {
@@ -61,7 +61,7 @@ in
     containers.site-0.autoStart = true;
     containers.site-0.privateNetwork = true;
     containers.site-0.localAddress = "10.120.0.3";
-    containers.site-0.hostAddress = "10.120.0.2";
+    containers.site-0.hostBridge = "br0";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     deployment.targetEnv = "gce";
     deployment.gce = {
