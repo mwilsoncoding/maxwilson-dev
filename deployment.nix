@@ -71,7 +71,9 @@ in
       mode = "bridge";
     };
     networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.2"; prefixLength = 24; } ];
+    networking.interfaces.mv-eth1.virtual = true;
     networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
+    networking.interfaces.eth1.virtual = true;
     networking.interfaces.mv-eth1-host.ipv4.addresses = [ { address = "10.0.1.0"; prefixLength = 24; } ];
     #networking.bridges.br0.interfaces = [];
     #networking.interfaces.br0.ipv4.addresses = [ { address = "10.0.1.0"; prefixLength = 24; } ];
