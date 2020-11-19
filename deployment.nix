@@ -45,6 +45,7 @@ in
         };
       };
     containers.site-i.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
+    containers.site-i.privateNetwork = true;
     containers.site-i.localAddress = resources.gceStaticIPs.site-ingress-static-ip.publicIPv4;
     containers.site-i.hostAddress = "10.120.0.4";
     containers.site-i.autoStart = true;
