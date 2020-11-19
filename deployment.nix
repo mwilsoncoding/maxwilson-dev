@@ -36,7 +36,7 @@ in
         services.nginx.virtualHosts.site-i = {
 #          forceSSL = true;
 #          enableACME = true;
-          serverAliases = [ "www.${domain}" ];
+          serverAliases = [ "www.${domain}" "${domain}" ];
           locations."/" = {
             proxyPass = "http://site-upstream";
           };
@@ -48,7 +48,7 @@ in
     containers.site-i.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
     containers.site-i.autoStart = true;
     containers.site-i.macvlans = ["eth1"];
-    containers.site-0.config = { pkgs, lib, resources, ... }:
+    containers.site-0.config = { pkgs, lib, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
       networking.interfaces.mv-eth1.ipv4.addresses = [{address = "10.0.1.2"; prefixLength = 24;}];
