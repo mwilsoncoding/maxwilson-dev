@@ -64,7 +64,7 @@ in
     containers.site-0.localAddress = "10.0.1.2";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
     networking.bridges.br0.interfaces = [];
-    networking.interfaces.br0.ip4.addresses = [ { address = "10.0.1.0"; prefixLength = 24; } ];
+    networking.interfaces.br0.ipv4.addresses = [ { address = "10.0.1.0"; prefixLength = 24; } ];
     deployment.targetEnv = "gce";
     deployment.gce = {
       region = "us-central1-c";
