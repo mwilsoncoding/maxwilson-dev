@@ -32,7 +32,7 @@ in
         services.nginx.recommendedOptimisation = true;
         services.nginx.recommendedProxySettings = true;
 #        services.nginx.recommendedTlsSettings = true;
-        services.nginx.virtualHosts."${domain}" = {
+        services.nginx.virtualHosts.site-i = {
 #          forceSSL = true;
 #          enableACME = true;
           serverAliases = [ "www.${domain}" ];
@@ -57,7 +57,7 @@ in
       services.nginx.recommendedOptimisation = true;
       services.nginx.recommendedProxySettings = true;
       services.nginx.recommendedTlsSettings = true;
-      services.nginx.virtualHosts.site-container-0 = {
+      services.nginx.virtualHosts.site-0 = {
           root = "${import ./. {}}";
       };
     };
