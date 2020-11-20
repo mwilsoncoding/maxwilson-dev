@@ -27,7 +27,7 @@ in
       {
 #        security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
         networking.firewall.allowedTCPPorts = [ 80 443 ];
-        defaultGateway = { address = "10.0.1.1"; interface = "br0"; };
+        networking.defaultGateway = { address = "10.0.1.1"; interface = "br0"; };
 #        networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.3"; prefixLength = 24; } ];
         services.nginx.enable = true;
         services.nginx.recommendedGzipSettings = true;
@@ -54,7 +54,7 @@ in
     containers.site-0.config = { pkgs, lib, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
-      defaultGateway = { address = "10.0.1.1"; interface = "br0"; };
+      networking.defaultGateway = { address = "10.0.1.1"; interface = "br0"; };
 #      networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.2"; prefixLength = 24; } ];
       services.nginx.enable = true;
       services.nginx.recommendedGzipSettings = true;
