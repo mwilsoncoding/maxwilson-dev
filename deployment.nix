@@ -27,7 +27,7 @@ in
       {
 #        security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
         networking.firewall.allowedTCPPorts = [ 80 443 ];
-        networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.3"; prefixLength = 24; } ];
+#        networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.3"; prefixLength = 24; } ];
         services.nginx.enable = true;
         services.nginx.recommendedGzipSettings = true;
         services.nginx.recommendedOptimisation = true;
@@ -45,13 +45,15 @@ in
           site-0 = {};
         };
       };
-    #containers.site-i.forwardPorts = [{hostPort = 80;} {hostPort = 443;}];
     containers.site-i.autoStart = true;
-    containers.site-i.macvlans = [ "eth1" ];
+    containers.site-i.privateNetwork = true;
+    containers.site-i.hostBridge = "br0";
+    containers.site-i.localAddress = "10.0.1.3";
+#    containers.site-i.macvlans = [ "eth1" ];
     containers.site-0.config = { pkgs, lib, ... }:
     {
       networking.firewall.allowedTCPPorts = [ 80 ];
-      networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.2"; prefixLength = 24; } ];
+#      networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.2"; prefixLength = 24; } ];
       services.nginx.enable = true;
       services.nginx.recommendedGzipSettings = true;
       services.nginx.recommendedOptimisation = true;
@@ -62,21 +64,21 @@ in
       };
     };
     containers.site-0.autoStart = true;
-    containers.site-0.macvlans = [ "eth1" ];
-    #containers.site-0.privateNetwork = true;
-    #containers.site-0.hostBridge = "br0";
-    #containers.site-0.localAddress = "10.0.1.2";
+#    containers.site-0.macvlans = [ "eth1" ];
+    containers.site-0.privateNetwork = true;
+    containers.site-0.hostBridge = "br0";
+    containers.site-0.localAddress = "10.0.1.2";
     networking.firewall.allowedTCPPorts = [ 80 443 ];
-    networking.macvlans.mv-eth1-host = {
-      interface = "eth1";
-      mode = "bridge";
-    };
-    networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
-    networking.interfaces.eth1.virtual = true;
-    networking.interfaces.mv-eth1-host.ipv4.addresses = [ { address = "10.0.1.1"; prefixLength = 24; } ];
-    networking.interfaces.mv-eth1-host.virtual = true;
-    #networking.bridges.br0.interfaces = [];
-    #networking.interfaces.br0.ipv4.addresses = [ { address = "10.0.1.1"; prefixLength = 24; } ];
+#    networking.macvlans.mv-eth1-host = {
+#      interface = "eth1";
+#      mode = "bridge";
+#    };
+#    networking.interfaces.eth1.ipv4.addresses = lib.mkForce [];
+#    networking.interfaces.eth1.virtual = true;
+#    networking.interfaces.mv-eth1-host.ipv4.addresses = [ { address = "10.0.1.1"; prefixLength = 24; } ];
+#    networking.interfaces.mv-eth1-host.virtual = true;
+    networking.bridges.br0.interfaces = [ "eth0" ];
+    networking.interfaces.br0.ipv4.addresses = [ { address = config.networking.privateIPv4; prefixLength = 24; } ];
     deployment.targetEnv = "gce";
     deployment.gce = {
       region = "us-central1-c";
