@@ -26,13 +26,13 @@ in
       { config, pkgs, lib, ... }:
       {
 #        security.acme.email = "maxwilsondotdev+acmecerts@${domain}";
-    #    networking.firewall.allowedTCPPorts = [ 80 443 ];
+        networking.firewall.allowedTCPPorts = [ 80 443 ];
         networking.interfaces.mv-eth1.ipv4.addresses = [ { address = "10.0.1.3"; prefixLength = 24; } ];
         services.nginx.enable = true;
         services.nginx.recommendedGzipSettings = true;
         services.nginx.recommendedOptimisation = true;
         services.nginx.recommendedProxySettings = true;
-#        services.nginx.recommendedTlsSettings = true;
+        services.nginx.recommendedTlsSettings = true;
         services.nginx.virtualHosts.site-i = {
 #          forceSSL = true;
 #          enableACME = true;
