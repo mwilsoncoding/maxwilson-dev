@@ -1,4 +1,4 @@
-{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/7db146538e49ad4bee4b5c4fea073c38586df7e2.tar.gz") {} }:
+{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/30d7b9341291dbe1e3361a5cca9052ee1437bc97.tar.gz") {} }:
 
 pkgs.stdenv.mkDerivation {
   name = "maxwilson-dev";
