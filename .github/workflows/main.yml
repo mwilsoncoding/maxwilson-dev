@@ -25,5 +25,5 @@ jobs:
     - name: Install Nix
       uses: cachix/install-nix-action@v10
       with:
-        nix_path: nixpkgs=https://github.com/NixOS/nixpkgs/archive/7db146538e49ad4bee4b5c4fea073c38586df7e2.tar.gz
-    - run: nix-build
+        nix_path: nixpkgs=https://github.com/NixOS/nixpkgs/archive/30d7b9341291dbe1e3361a5cca9052ee1437bc97.tar.gz
+    - run: nix build default.nix
